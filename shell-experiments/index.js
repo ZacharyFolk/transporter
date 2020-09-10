@@ -1,5 +1,5 @@
 const request = require('request');
-const key = require('./keys');
+const key = require('./../private/keys');
 const argv = require('yargs').argv;
 let apiKey = key.getWeatherKey();
 let city = argv.c || 'seattle';

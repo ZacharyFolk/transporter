@@ -1,7 +1,11 @@
 const request = require('request');
 const key = require('./keys');
+const argv = require('yargs').argv;
 let apiKey = key.getWeatherKey();
-let city = 'seattle';
+let city = argv.c || 'seattle';
+
+// access with node index.js -c Portland
+
 let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 
 function convertUnix(stamp) {
@@ -23,7 +27,7 @@ request(url, function(err, response, body) {
     let sunset = `${weather.sys.sunset}`
     let message = `It's ${weather.main.temp} degrees in ${weather.name}!`
     console.log(message);
-    // console.log(JSON.parse(body));
+     console.log(JSON.parse(body));
     console.log( 'Sunrise : ' + convertUnix(sunrise) + '\nSunset : ' + convertUnix(sunset))
 // get timezone for location to compare to current time
 // What a list!! https://stackoverflow.com/questions/16086962/how-to-get-a-time-zone-from-a-location-using-latitude-and-longitude-coordinates/16086964

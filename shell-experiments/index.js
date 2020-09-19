@@ -1,3 +1,5 @@
+// https://codeburst.io/build-a-simple-weather-app-with-node-js-in-just-16-lines-of-code-32261690901d
+
 const request = require('request');
 const key = require('./../private/keys');
 const argv = require('yargs').argv;
@@ -27,9 +29,13 @@ request(url, function(err, response, body) {
     let sunset = `${weather.sys.sunset}`
     let message = `It's ${weather.main.temp} degrees in ${weather.name}!`
     console.log(message);
-     console.log(JSON.parse(body));
+    console.log(JSON.parse(body));
     console.log( 'Sunrise : ' + convertUnix(sunrise) + '\nSunset : ' + convertUnix(sunset))
 // get timezone for location to compare to current time
+console.log(convertUnix(weather.dt));
+console.log(convertUnix(weather.timezone));
+
+ // console.log( new Date((weather.dt + weather.timezone) * 1000).getHours());
 // What a list!! https://stackoverflow.com/questions/16086962/how-to-get-a-time-zone-from-a-location-using-latitude-and-longitude-coordinates/16086964
 
 
